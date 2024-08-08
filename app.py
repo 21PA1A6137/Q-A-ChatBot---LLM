@@ -20,7 +20,7 @@ embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 st.title("Conversational RAG with PDF uploads and Chat history")
 st.write("Upload PDF and chat with their content")
-st.secrets["HF_TOKEN"]
+st.secrets["HF_TOKEN"] #secret key
 api_key = st.text_input("Enter your api key",type="password")
 
 if api_key:
