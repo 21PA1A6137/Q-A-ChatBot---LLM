@@ -33,13 +33,14 @@ if api_key:
     if upload_files:
         documents = []
         for upload_file in upload_files:
-            temp = f'C:\\Users\\charan27\\OneDrive\\Desktop\\GEN_AI_COURSE\\Documents\\Attention_is_all_you_need.pdf'
-            with open('temp','wb') as file:
+            # temp = f'C:\\Users\\charan27\\OneDrive\\Desktop\\GEN_AI_COURSE\\Documents\\Attention_is_all_you_need.pdf'
+            with open(upload_file.name,'wb') as file:
                 file.write(upload_file.getvalue())
                 file_name = upload_file.name
-            loader = PyPDFLoader(temp)
+            loader = PyPDFLoader(upload_file.name)
             docs = loader.load()
             documents.extend(docs)
+            os.remove(upload_file.name)
 
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=5000,chunk_overlap=200)
         splits = text_splitter.split_documents(documents)
